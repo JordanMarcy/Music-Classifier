@@ -1,0 +1,85 @@
+import util, random, math, sys
+from math import exp, log
+from util import Counter
+
+########################################################
+#featurize:
+
+def featurize(pRange):
+    
+    featureVector = util.Counter()
+    octaveRange = util.Counter()
+    octaveRangeCopy = octaveRange.copy()
+    pRangeCopy = pRange.copy()
+    sortedPRange = pRangeCopy.sortedKeys() #List of pitches sorted by frequency
+    featureVector['max'] = pRange.argMax()
+    if  pRange.argMax() != sortedPRange[0]: #Error checking of sortedKeys()
+        print 'INCORRECT MAX CALCULATION'
+    featureVector['min'] = sortedPRange[len(sortedPRange)-1]
+    featureVector['noteCount'] = pRange.totalCount()
+    pRangeCopy.normalize()
+    featureVector['mostfreq'] = pRangeCopy.argMax()
+    for p, count in pRange.items():
+        octaveRange[int(p/12)] += count
+    sortedOctaveRange = octaveRange.sortedKeys()
+    featureVector['maxOctave'] = sortedOctaveRange[0]
+    featureVector['minOctave'] = sortedOctaveRange[len(sortedOctaveRange)-1]
+    octaveRangeCopy.normalize()
+    featureVector['mostfreqOctave'] = octaveRangeCopy.argMax()
+
+    print featureVector
+
+"""
+Our feature vector contains:
+Max: The highest pitch 
+Min: The lowest pitch
+NoteCount: Total number of pitches
+MostFreq: Pitch that occurs most often
+OctaveFreq: Combines frequency of pitches in same octave
+
+TODO:
+Absolute PItch frequency
+Work with durations of notes (need new data)
+
+""" 
+
+
+########################################################
+#readPrange:
+
+def readPrange(path):
+
+    pRange = util.Counter()
+    f = open(path)
+    for line in f:
+        if line[0] != '*' and line[0] != '!':
+            i = 1
+            midi = 0
+            for token in line.split('\t'):
+                token.strip() #removes white space from token
+                if i == 1:
+                    midi = int(token)
+                if i == 3:
+                    freq = int(token)
+                    pRange[midi] = freq
+                    
+                i = i + 1
+    print pRange
+
+
+    print pRange.argMax()
+
+    print pRange.sortedKeys()
+    
+#    featurize(pRange)
+
+                
+if __name__ == '__main__':
+    path = '/Users/Tyler/Dropbox/CS221Final/Scripts/prangeFile.txt'
+    readPrange(path)
+        
+    
+     
+
+
+    

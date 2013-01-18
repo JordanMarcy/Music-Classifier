@@ -1,0 +1,34 @@
+README File:
+
+Musical Classifier - Jordan Marcy and Tyler Boyd-Meredith
+
+CODE
+
+musicLearning.py - python program of our classifier.  It Parses through the **kern files and creates the feature vectors for each music piece.  It then implements Nearest Neighbors and SGD with both logistic and softmax regression.  To call the program, the command line call with parameters is:
+
+python musicLearning.py trainPath testPath typeOfClassifier
+
+trainPath and testPath are the locations of the directories containing the training and testing data sets respectively.  
+
+typeOfClassifier is either 'multi' or 'sgd' with 'multi' causing the program to run NN and SGD with softmax and 'sgd' causes the program to run NN and SGD with logistic regression.
+
+ 
+OTHER FILES
+
+prange - This is a UNIX executable file that contains the program that parses the **kern data files into .txt files that contain the frequencies of each MIDI note pitch.
+
+rcheck - Another UNIX executable that parses out the note durations from the **kern files
+
+The group of Directories that contains TestingData, TestingDataPrange, TestingDataRcheck, TrainingData, TrainingDataPrange, and TrainingDataRcheck will hold all of the **kern, prange, and rcheck files.  musicLearning.py will call prange and rcheck during the run, and store the files in the correct directories.  
+
+ComposerData is the directory that holds all of the **kern data for all of our composers.  We created training and testing data sets for every subset of composers, which is all documented within our report.  We would place the **kern files that we wanted to classify into the TrainingData and TestingData folders and run musicLearning.py on those.
+
+Hope this all makes sense!
+
+
+
+
+
+
+
+  

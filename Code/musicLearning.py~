@@ -1,0 +1,24 @@
+import util, random, math, sys
+from math import exp, log
+from util import Counter
+
+########################################################
+#readPrange:
+
+def readPrange(path):
+    pRange = util.Counter()
+    pRange(mean) = 
+    pRange(median) =
+
+
+
+    f = open(path, 'r')
+    for line in f:
+        columns = line.split(' ')
+        columns = [col.strip() for col in columns]
+        int(x) for x in columns[0]
+        int(x) for x in columns[2]
+
+    lines = file.stdin.readLines()
+     
+
